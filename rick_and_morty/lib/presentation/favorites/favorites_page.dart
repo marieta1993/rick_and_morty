@@ -1,12 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:rick_and_morty/core/widgets/app_error_view.dart';
-import 'package:rick_and_morty/core/widgets/app_loading_indicator.dart';
 import 'package:rick_and_morty/domain/domain.dart';
 import 'package:rick_and_morty/presentation/characters/bloc/characters_bloc.dart';
 import 'package:rick_and_morty/presentation/widgets/character_card.dart';
+import 'package:ui/ui.dart';
 
 import 'bloc/favorites_bloc.dart';
 
@@ -73,9 +73,9 @@ class FavoritesPage extends StatelessWidget {
                   child: characters.isEmpty
                       ? ListView(
                           physics: const AlwaysScrollableScrollPhysics(),
-                          children: const [
-                            SizedBox(height: 120),
-                            _EmptyFavoritesView(),
+                          children: [
+                            SizedBox(height: 120.h),
+                            const _EmptyFavoritesView(),
                           ],
                         )
                       : ListView.builder(
@@ -88,14 +88,15 @@ class FavoritesPage extends StatelessWidget {
                               direction: DismissDirection.endToStart,
                               background: Container(
                                 alignment: Alignment.centerRight,
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 24,
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 24.w,
                                 ),
                                 color: Theme.of(
                                   context,
                                 ).colorScheme.errorContainer,
                                 child: Icon(
                                   Icons.delete,
+                                  size: 24.sp,
                                   color: Theme.of(
                                     context,
                                   ).colorScheme.onErrorContainer,
@@ -149,7 +150,7 @@ class _FavoritesToolbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -172,8 +173,8 @@ class _FavoritesToolbar extends StatelessWidget {
             ],
             child: Row(
               children: [
-                const Icon(Icons.sort),
-                const SizedBox(width: 8),
+                Icon(Icons.sort, size: 20.sp),
+                SizedBox(width: 8.w),
                 Text(_sortLabel(currentSort)),
               ],
             ),
@@ -202,16 +203,16 @@ class _EmptyFavoritesView extends StatelessWidget {
       children: [
         Icon(
           Icons.star_border,
-          size: 64,
+          size: 64.sp,
           color: Theme.of(context).colorScheme.primary,
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16.h),
         Text(
           'Пока нет избранных персонажей',
           style: Theme.of(context).textTheme.titleMedium,
           textAlign: TextAlign.center,
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: 8.h),
         Text(
           'Добавьте персонажей на главном экране.',
           style: Theme.of(context).textTheme.bodyMedium,

@@ -1,7 +1,9 @@
+import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'key_value_storage.dart';
 
+@LazySingleton(as: KeyValueStorage)
 class SharedPreferencesStorage implements KeyValueStorage {
   SharedPreferencesStorage(this.preferences);
 

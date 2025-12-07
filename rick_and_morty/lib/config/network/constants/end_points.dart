@@ -1,1 +1,3 @@
-abstract class EndPoints {}
+abstract class EndPoints {
+  static const String characters = '/character';
+}

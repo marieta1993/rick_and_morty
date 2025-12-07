@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rick_and_morty/config/locator/service_locator.dart';
 import 'package:rick_and_morty/config/routes/app_router.dart';
 import 'package:rick_and_morty/core/observer/app_bloc_observer.dart';
-import 'package:rick_and_morty/core/theme/app_theme.dart';
-import 'package:rick_and_morty/domain/entities/app_theme_mode.dart';
+import 'package:rick_and_morty/domain/enums/app_theme_mode.dart';
 import 'package:rick_and_morty/presentation/theme/bloc/theme_bloc.dart';
+import 'package:ui/ui.dart' show AppTheme;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,17 +34,22 @@ class RickAndMortyApp extends StatelessWidget {
             orElse: () => AppThemeMode.light,
           );
 
-          return MaterialApp.router(
-            title: 'Rick and Morty',
-            debugShowCheckedModeBanner: false,
-            theme: AppTheme.lightTheme,
-            darkTheme: AppTheme.darkTheme,
-            themeMode: mode == AppThemeMode.dark
-                ? ThemeMode.dark
-                : ThemeMode.light,
-            routerDelegate: appRouter.delegate(),
-            routeInformationParser: appRouter.defaultRouteParser(),
-            routeInformationProvider: appRouter.routeInfoProvider(),
+          return ScreenUtilInit(
+            designSize: const Size(390, 844),
+            minTextAdapt: true,
+            builder: (_, __) {
+              return MaterialApp.router(
+                title: 'Rick and Morty',
+                debugShowCheckedModeBanner: false,
+                theme: AppTheme.lightTheme,
+                darkTheme: AppTheme.darkTheme,
+                themeMode:
+                    mode == AppThemeMode.dark ? ThemeMode.dark : ThemeMode.light,
+                routerDelegate: appRouter.delegate(),
+                routeInformationParser: appRouter.defaultRouteParser(),
+                routeInformationProvider: appRouter.routeInfoProvider(),
+              );
+            },
           );
         },
       ),

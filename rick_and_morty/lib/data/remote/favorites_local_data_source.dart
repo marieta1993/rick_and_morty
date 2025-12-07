@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:injectable/injectable.dart';
 import 'package:rick_and_morty/core/utils/storage_keys.dart';
 import 'package:rick_and_morty/data/local/shared_preferences/key_value_storage.dart';
 import 'package:rick_and_morty/domain/models/character/character_model.dart';
@@ -10,6 +11,7 @@ abstract class FavoritesLocalDataSource {
   Future<void> saveFavorites(List<CharacterModel> favorites);
 }
 
+@LazySingleton(as: FavoritesLocalDataSource)
 class FavoritesLocalDataSourceImpl implements FavoritesLocalDataSource {
   FavoritesLocalDataSourceImpl(this.storage);
 

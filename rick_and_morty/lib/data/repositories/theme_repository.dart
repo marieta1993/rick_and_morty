@@ -2,7 +2,7 @@ import 'package:injectable/injectable.dart';
 import 'package:rick_and_morty/core/error/app_error.dart';
 import 'package:rick_and_morty/core/result/app_result.dart';
 import 'package:rick_and_morty/data/remote/theme_local_data_source.dart';
-import 'package:rick_and_morty/domain/entities/app_theme_mode.dart';
+import 'package:rick_and_morty/domain/enums/app_theme_mode.dart';
 import 'package:rick_and_morty/domain/repositories/theme_repository.dart';
 
 @LazySingleton(as: ThemeRepository)

@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 
 import 'package:rick_and_morty/core/error/app_error.dart';
 import 'package:rick_and_morty/core/usecases/usecase.dart';
@@ -9,6 +10,7 @@ part 'characters_event.dart';
 part 'characters_state.dart';
 part 'characters_bloc.freezed.dart';
 
+@injectable
 class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
   CharactersBloc({
     required GetCharactersPage getCharactersPage,

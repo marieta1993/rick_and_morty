@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import 'package:injectable/injectable.dart';
 import 'package:rick_and_morty/core/error/app_error.dart';
 import 'package:rick_and_morty/domain/domain.dart';
 
@@ -8,6 +9,7 @@ part 'favorites_event.dart';
 part 'favorites_state.dart';
 part 'favorites_bloc.freezed.dart';
 
+@injectable
 class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
   FavoritesBloc({
     required GetFavoriteCharacters getFavoriteCharacters,

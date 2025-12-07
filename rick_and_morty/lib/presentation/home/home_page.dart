@@ -1,8 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty/config/locator/service_locator.dart';
-import 'package:rick_and_morty/domain/entities/app_theme_mode.dart';
+import 'package:rick_and_morty/domain/enums/app_theme_mode.dart';
 import 'package:rick_and_morty/config/routes/app_router.dart';
 import 'package:rick_and_morty/presentation/characters/bloc/characters_bloc.dart';
 import 'package:rick_and_morty/presentation/favorites/bloc/favorites_bloc.dart';
@@ -30,7 +31,19 @@ class HomePage extends StatelessWidget {
         ],
         appBarBuilder: (context, tabsRouter) {
           return AppBar(
-            title: Text(_title(tabsRouter.activeIndex)),
+            title: Padding(
+              padding: EdgeInsets.only(left: 8.w),
+              child: Text(
+                _title(tabsRouter.activeIndex),
+                style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      fontSize: Theme.of(context)
+                          .textTheme
+                          .titleLarge
+                          ?.fontSize
+                          ?.sp,
+                    ),
+              ),
+            ),
             actions: [
               BlocBuilder<ThemeBloc, ThemeState>(
                 builder: (context, state) {
@@ -46,7 +59,7 @@ class HomePage extends StatelessWidget {
                     onPressed: () => context
                         .read<ThemeBloc>()
                         .add(const ThemeEvent.toggled()),
-                    icon: Icon(icon),
+                    icon: Icon(icon, size: 24.sp),
                   );
                 },
               ),
@@ -54,18 +67,22 @@ class HomePage extends StatelessWidget {
           );
         },
         bottomNavigationBuilder: (context, tabsRouter) {
+          final labelSize =
+              Theme.of(context).textTheme.labelSmall?.fontSize?.sp ?? 12.sp;
           return BottomNavigationBar(
             currentIndex: tabsRouter.activeIndex,
             onTap: (index) => tabsRouter.setActiveIndex(index),
-            items: const [
+            selectedFontSize: labelSize,
+            unselectedFontSize: labelSize,
+            items: [
               BottomNavigationBarItem(
-                icon: Icon(Icons.people_alt_outlined),
-                activeIcon: Icon(Icons.people_alt),
+                icon: Icon(Icons.people_alt_outlined, size: 22.sp),
+                activeIcon: Icon(Icons.people_alt, size: 22.sp),
                 label: 'Персонажи',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.star_border),
-                activeIcon: Icon(Icons.star),
+                icon: Icon(Icons.star_border, size: 22.sp),
+                activeIcon: Icon(Icons.star, size: 22.sp),
                 label: 'Избранное',
               ),
             ],

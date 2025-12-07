@@ -1,16 +1,16 @@
+import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rick_and_morty/core/error/app_error.dart';
 import 'package:rick_and_morty/core/error/exceptions.dart';
 import 'package:rick_and_morty/core/network/network_info.dart';
 import 'package:rick_and_morty/core/result/app_result.dart';
 import 'package:rick_and_morty/data/remote/characters_local_data_source.dart';
-import 'package:rick_and_morty/data/remote/characters_remote_data_source.dart';
+import 'package:rick_and_morty/data/remote/characters_remote/characters_remote_data_source.dart';
 import 'package:rick_and_morty/data/remote/favorites_local_data_source.dart';
 import 'package:rick_and_morty/domain/enums/favorite_sort.dart';
 import 'package:rick_and_morty/domain/models/character/character_model.dart';
 import 'package:rick_and_morty/domain/models/paginated_characters/paginated_characters_model.dart';
 import 'package:rick_and_morty/domain/repositories/characters_repository.dart';
-import 'package:dio/dio.dart';
 
 @LazySingleton(as: CharactersRepository)
 class CharactersRepositoryImpl implements CharactersRepository {
@@ -19,10 +19,10 @@ class CharactersRepositoryImpl implements CharactersRepository {
     required CharactersLocalDataSource localDataSource,
     required FavoritesLocalDataSource favoritesLocalDataSource,
     required NetworkInfo networkInfo,
-  }) : _remoteDataSource = remoteDataSource,
-       _localDataSource = localDataSource,
-       _favoritesLocalDataSource = favoritesLocalDataSource,
-       _networkInfo = networkInfo;
+  })  : _remoteDataSource = remoteDataSource,
+        _localDataSource = localDataSource,
+        _favoritesLocalDataSource = favoritesLocalDataSource,
+        _networkInfo = networkInfo;
 
   final CharactersRemoteDataSource _remoteDataSource;
   final CharactersLocalDataSource _localDataSource;
@@ -130,9 +130,8 @@ class CharactersRepositoryImpl implements CharactersRepository {
   Future<AppResult<bool>> removeFavorite(int id) async {
     try {
       final favorites = await _favoritesLocalDataSource.fetchFavorites();
-      final newFavorites = favorites
-          .where((character) => character.id != id)
-          .toList();
+      final newFavorites =
+          favorites.where((character) => character.id != id).toList();
       await _favoritesLocalDataSource.saveFavorites(newFavorites);
       return AppResult.success(newFavorites.length != favorites.length);
     } on CacheException catch (error) {

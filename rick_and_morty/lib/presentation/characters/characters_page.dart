@@ -1,13 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
-import 'package:rick_and_morty/core/widgets/app_error_view.dart';
-import 'package:rick_and_morty/core/widgets/app_loading_indicator.dart';
 import 'package:rick_and_morty/domain/domain.dart';
 import 'package:rick_and_morty/presentation/widgets/character_card.dart';
 import 'package:rick_and_morty/presentation/favorites/bloc/favorites_bloc.dart';
+import 'package:ui/ui.dart';
 
 import 'bloc/characters_bloc.dart';
 
@@ -75,9 +75,9 @@ class _CharactersPageState extends State<CharactersPage> {
               },
               firstPageProgressIndicatorBuilder: (_) =>
                   const Center(child: AppLoadingIndicator()),
-              newPageProgressIndicatorBuilder: (_) => const Padding(
-                padding: EdgeInsets.symmetric(vertical: 16),
-                child: Center(child: AppLoadingIndicator()),
+              newPageProgressIndicatorBuilder: (_) => Padding(
+                padding: EdgeInsets.symmetric(vertical: 16.h),
+                child: const Center(child: AppLoadingIndicator()),
               ),
               firstPageErrorIndicatorBuilder: (_) => AppErrorView(
                 message: (_pagingController.error ?? 'Ошибка загрузки')
@@ -85,7 +85,7 @@ class _CharactersPageState extends State<CharactersPage> {
                 onRetry: _pagingController.refresh,
               ),
               newPageErrorIndicatorBuilder: (_) => Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16),
+                padding: EdgeInsets.symmetric(vertical: 16.h),
                 child: Center(
                   child: TextButton(
                     onPressed: _pagingController.retryLastFailedRequest,
@@ -177,13 +177,19 @@ class _EmptyCharactersView extends StatelessWidget {
       children: [
         Icon(
           Icons.people_outline,
-          size: 64,
+          size: 64.sp,
           color: Theme.of(context).colorScheme.primary,
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16.h),
         Text(
           'Персонажи не найдены',
           style: Theme.of(context).textTheme.titleMedium,
+        ),
+        SizedBox(height: 8.h),
+        Text(
+          'Попробуйте изменить фильтры или перезагрузить.',
+          style: Theme.of(context).textTheme.bodyMedium,
+          textAlign: TextAlign.center,
         ),
       ],
     );
