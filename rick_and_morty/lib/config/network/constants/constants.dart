@@ -4,8 +4,7 @@ class APIBase {
 }
 
 class UrlBase {
-  static const String url = 'https://dev.hrspace.app/';
-  // static const String url = 'https://hrspace.app/';
+  static const String url = 'https://rickandmortyapi.com/api';
 }
 
 class HeaderParameterKeys {
@@ -14,8 +13,4 @@ class HeaderParameterKeys {
 
 class HeaderValues {
   static const String applicationJson = 'application/json';
-}
-
-class PrivacyPolicy {
-  static const String privacyPolicyUrl = 'https://hrspace.app/policy';
 }

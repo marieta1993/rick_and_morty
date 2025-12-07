@@ -18,3 +18,5 @@ class AppError {
   final AppErrorType type;
   final String message;
 }
+
+

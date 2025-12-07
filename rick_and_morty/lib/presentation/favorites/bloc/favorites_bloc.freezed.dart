@@ -21,7 +21,7 @@ mixin _$FavoritesEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(FavoriteSort? sort) started,
     required TResult Function(FavoriteSort sort) sortChanged,
-    required TResult Function(Character character) toggleFavorite,
+    required TResult Function(CharacterModel character) toggleFavorite,
     required TResult Function(int id) removeFavorite,
     required TResult Function() refresh,
   }) => throw _privateConstructorUsedError;
@@ -29,7 +29,7 @@ mixin _$FavoritesEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(FavoriteSort? sort)? started,
     TResult? Function(FavoriteSort sort)? sortChanged,
-    TResult? Function(Character character)? toggleFavorite,
+    TResult? Function(CharacterModel character)? toggleFavorite,
     TResult? Function(int id)? removeFavorite,
     TResult? Function()? refresh,
   }) => throw _privateConstructorUsedError;
@@ -37,7 +37,7 @@ mixin _$FavoritesEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(FavoriteSort? sort)? started,
     TResult Function(FavoriteSort sort)? sortChanged,
-    TResult Function(Character character)? toggleFavorite,
+    TResult Function(CharacterModel character)? toggleFavorite,
     TResult Function(int id)? removeFavorite,
     TResult Function()? refresh,
     required TResult orElse(),
@@ -163,7 +163,7 @@ class _$StartedImpl implements _Started {
   TResult when<TResult extends Object?>({
     required TResult Function(FavoriteSort? sort) started,
     required TResult Function(FavoriteSort sort) sortChanged,
-    required TResult Function(Character character) toggleFavorite,
+    required TResult Function(CharacterModel character) toggleFavorite,
     required TResult Function(int id) removeFavorite,
     required TResult Function() refresh,
   }) {
@@ -175,7 +175,7 @@ class _$StartedImpl implements _Started {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(FavoriteSort? sort)? started,
     TResult? Function(FavoriteSort sort)? sortChanged,
-    TResult? Function(Character character)? toggleFavorite,
+    TResult? Function(CharacterModel character)? toggleFavorite,
     TResult? Function(int id)? removeFavorite,
     TResult? Function()? refresh,
   }) {
@@ -187,7 +187,7 @@ class _$StartedImpl implements _Started {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(FavoriteSort? sort)? started,
     TResult Function(FavoriteSort sort)? sortChanged,
-    TResult Function(Character character)? toggleFavorite,
+    TResult Function(CharacterModel character)? toggleFavorite,
     TResult Function(int id)? removeFavorite,
     TResult Function()? refresh,
     required TResult orElse(),
@@ -323,7 +323,7 @@ class _$SortChangedImpl implements _SortChanged {
   TResult when<TResult extends Object?>({
     required TResult Function(FavoriteSort? sort) started,
     required TResult Function(FavoriteSort sort) sortChanged,
-    required TResult Function(Character character) toggleFavorite,
+    required TResult Function(CharacterModel character) toggleFavorite,
     required TResult Function(int id) removeFavorite,
     required TResult Function() refresh,
   }) {
@@ -335,7 +335,7 @@ class _$SortChangedImpl implements _SortChanged {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(FavoriteSort? sort)? started,
     TResult? Function(FavoriteSort sort)? sortChanged,
-    TResult? Function(Character character)? toggleFavorite,
+    TResult? Function(CharacterModel character)? toggleFavorite,
     TResult? Function(int id)? removeFavorite,
     TResult? Function()? refresh,
   }) {
@@ -347,7 +347,7 @@ class _$SortChangedImpl implements _SortChanged {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(FavoriteSort? sort)? started,
     TResult Function(FavoriteSort sort)? sortChanged,
-    TResult Function(Character character)? toggleFavorite,
+    TResult Function(CharacterModel character)? toggleFavorite,
     TResult Function(int id)? removeFavorite,
     TResult Function()? refresh,
     required TResult orElse(),
@@ -418,9 +418,9 @@ abstract class _$$ToggleFavoriteImplCopyWith<$Res> {
     $Res Function(_$ToggleFavoriteImpl) then,
   ) = __$$ToggleFavoriteImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({Character character});
+  $Res call({CharacterModel character});
 
-  $CharacterCopyWith<$Res> get character;
+  $CharacterModelCopyWith<$Res> get character;
 }
 
 /// @nodoc
@@ -442,7 +442,7 @@ class __$$ToggleFavoriteImplCopyWithImpl<$Res>
         null == character
             ? _value.character
             : character // ignore: cast_nullable_to_non_nullable
-                  as Character,
+                  as CharacterModel,
       ),
     );
   }
@@ -451,8 +451,8 @@ class __$$ToggleFavoriteImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $CharacterCopyWith<$Res> get character {
-    return $CharacterCopyWith<$Res>(_value.character, (value) {
+  $CharacterModelCopyWith<$Res> get character {
+    return $CharacterModelCopyWith<$Res>(_value.character, (value) {
       return _then(_value.copyWith(character: value));
     });
   }
@@ -464,7 +464,7 @@ class _$ToggleFavoriteImpl implements _ToggleFavorite {
   const _$ToggleFavoriteImpl(this.character);
 
   @override
-  final Character character;
+  final CharacterModel character;
 
   @override
   String toString() {
@@ -499,7 +499,7 @@ class _$ToggleFavoriteImpl implements _ToggleFavorite {
   TResult when<TResult extends Object?>({
     required TResult Function(FavoriteSort? sort) started,
     required TResult Function(FavoriteSort sort) sortChanged,
-    required TResult Function(Character character) toggleFavorite,
+    required TResult Function(CharacterModel character) toggleFavorite,
     required TResult Function(int id) removeFavorite,
     required TResult Function() refresh,
   }) {
@@ -511,7 +511,7 @@ class _$ToggleFavoriteImpl implements _ToggleFavorite {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(FavoriteSort? sort)? started,
     TResult? Function(FavoriteSort sort)? sortChanged,
-    TResult? Function(Character character)? toggleFavorite,
+    TResult? Function(CharacterModel character)? toggleFavorite,
     TResult? Function(int id)? removeFavorite,
     TResult? Function()? refresh,
   }) {
@@ -523,7 +523,7 @@ class _$ToggleFavoriteImpl implements _ToggleFavorite {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(FavoriteSort? sort)? started,
     TResult Function(FavoriteSort sort)? sortChanged,
-    TResult Function(Character character)? toggleFavorite,
+    TResult Function(CharacterModel character)? toggleFavorite,
     TResult Function(int id)? removeFavorite,
     TResult Function()? refresh,
     required TResult orElse(),
@@ -576,10 +576,10 @@ class _$ToggleFavoriteImpl implements _ToggleFavorite {
 }
 
 abstract class _ToggleFavorite implements FavoritesEvent {
-  const factory _ToggleFavorite(final Character character) =
+  const factory _ToggleFavorite(final CharacterModel character) =
       _$ToggleFavoriteImpl;
 
-  Character get character;
+  CharacterModel get character;
 
   /// Create a copy of FavoritesEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -663,7 +663,7 @@ class _$RemoveFavoriteImpl implements _RemoveFavorite {
   TResult when<TResult extends Object?>({
     required TResult Function(FavoriteSort? sort) started,
     required TResult Function(FavoriteSort sort) sortChanged,
-    required TResult Function(Character character) toggleFavorite,
+    required TResult Function(CharacterModel character) toggleFavorite,
     required TResult Function(int id) removeFavorite,
     required TResult Function() refresh,
   }) {
@@ -675,7 +675,7 @@ class _$RemoveFavoriteImpl implements _RemoveFavorite {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(FavoriteSort? sort)? started,
     TResult? Function(FavoriteSort sort)? sortChanged,
-    TResult? Function(Character character)? toggleFavorite,
+    TResult? Function(CharacterModel character)? toggleFavorite,
     TResult? Function(int id)? removeFavorite,
     TResult? Function()? refresh,
   }) {
@@ -687,7 +687,7 @@ class _$RemoveFavoriteImpl implements _RemoveFavorite {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(FavoriteSort? sort)? started,
     TResult Function(FavoriteSort sort)? sortChanged,
-    TResult Function(Character character)? toggleFavorite,
+    TResult Function(CharacterModel character)? toggleFavorite,
     TResult Function(int id)? removeFavorite,
     TResult Function()? refresh,
     required TResult orElse(),
@@ -796,7 +796,7 @@ class _$RefreshImpl implements _Refresh {
   TResult when<TResult extends Object?>({
     required TResult Function(FavoriteSort? sort) started,
     required TResult Function(FavoriteSort sort) sortChanged,
-    required TResult Function(Character character) toggleFavorite,
+    required TResult Function(CharacterModel character) toggleFavorite,
     required TResult Function(int id) removeFavorite,
     required TResult Function() refresh,
   }) {
@@ -808,7 +808,7 @@ class _$RefreshImpl implements _Refresh {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(FavoriteSort? sort)? started,
     TResult? Function(FavoriteSort sort)? sortChanged,
-    TResult? Function(Character character)? toggleFavorite,
+    TResult? Function(CharacterModel character)? toggleFavorite,
     TResult? Function(int id)? removeFavorite,
     TResult? Function()? refresh,
   }) {
@@ -820,7 +820,7 @@ class _$RefreshImpl implements _Refresh {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(FavoriteSort? sort)? started,
     TResult Function(FavoriteSort sort)? sortChanged,
-    TResult Function(Character character)? toggleFavorite,
+    TResult Function(CharacterModel character)? toggleFavorite,
     TResult Function(int id)? removeFavorite,
     TResult Function()? refresh,
     required TResult orElse(),
@@ -883,7 +883,7 @@ mixin _$FavoritesState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(
-      List<Character> characters,
+      List<CharacterModel> characters,
       FavoriteSort sort,
       AppError? error,
     )
@@ -895,7 +895,7 @@ mixin _$FavoritesState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(
-      List<Character> characters,
+      List<CharacterModel> characters,
       FavoriteSort sort,
       AppError? error,
     )?
@@ -907,7 +907,7 @@ mixin _$FavoritesState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(
-      List<Character> characters,
+      List<CharacterModel> characters,
       FavoriteSort sort,
       AppError? error,
     )?
@@ -1007,7 +1007,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(
-      List<Character> characters,
+      List<CharacterModel> characters,
       FavoriteSort sort,
       AppError? error,
     )
@@ -1023,7 +1023,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(
-      List<Character> characters,
+      List<CharacterModel> characters,
       FavoriteSort sort,
       AppError? error,
     )?
@@ -1039,7 +1039,7 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(
-      List<Character> characters,
+      List<CharacterModel> characters,
       FavoriteSort sort,
       AppError? error,
     )?
@@ -1141,7 +1141,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(
-      List<Character> characters,
+      List<CharacterModel> characters,
       FavoriteSort sort,
       AppError? error,
     )
@@ -1157,7 +1157,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(
-      List<Character> characters,
+      List<CharacterModel> characters,
       FavoriteSort sort,
       AppError? error,
     )?
@@ -1173,7 +1173,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(
-      List<Character> characters,
+      List<CharacterModel> characters,
       FavoriteSort sort,
       AppError? error,
     )?
@@ -1236,7 +1236,11 @@ abstract class _$$LoadedImplCopyWith<$Res> {
     $Res Function(_$LoadedImpl) then,
   ) = __$$LoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Character> characters, FavoriteSort sort, AppError? error});
+  $Res call({
+    List<CharacterModel> characters,
+    FavoriteSort sort,
+    AppError? error,
+  });
 }
 
 /// @nodoc
@@ -1262,7 +1266,7 @@ class __$$LoadedImplCopyWithImpl<$Res>
         characters: null == characters
             ? _value._characters
             : characters // ignore: cast_nullable_to_non_nullable
-                  as List<Character>,
+                  as List<CharacterModel>,
         sort: null == sort
             ? _value.sort
             : sort // ignore: cast_nullable_to_non_nullable
@@ -1280,14 +1284,14 @@ class __$$LoadedImplCopyWithImpl<$Res>
 
 class _$LoadedImpl implements _Loaded {
   const _$LoadedImpl({
-    required final List<Character> characters,
+    required final List<CharacterModel> characters,
     required this.sort,
     this.error,
   }) : _characters = characters;
 
-  final List<Character> _characters;
+  final List<CharacterModel> _characters;
   @override
-  List<Character> get characters {
+  List<CharacterModel> get characters {
     if (_characters is EqualUnmodifiableListView) return _characters;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_characters);
@@ -1338,7 +1342,7 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(
-      List<Character> characters,
+      List<CharacterModel> characters,
       FavoriteSort sort,
       AppError? error,
     )
@@ -1354,7 +1358,7 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(
-      List<Character> characters,
+      List<CharacterModel> characters,
       FavoriteSort sort,
       AppError? error,
     )?
@@ -1370,7 +1374,7 @@ class _$LoadedImpl implements _Loaded {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(
-      List<Character> characters,
+      List<CharacterModel> characters,
       FavoriteSort sort,
       AppError? error,
     )?
@@ -1424,12 +1428,12 @@ class _$LoadedImpl implements _Loaded {
 
 abstract class _Loaded implements FavoritesState {
   const factory _Loaded({
-    required final List<Character> characters,
+    required final List<CharacterModel> characters,
     required final FavoriteSort sort,
     final AppError? error,
   }) = _$LoadedImpl;
 
-  List<Character> get characters;
+  List<CharacterModel> get characters;
   FavoriteSort get sort;
   AppError? get error;
 
@@ -1513,7 +1517,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(
-      List<Character> characters,
+      List<CharacterModel> characters,
       FavoriteSort sort,
       AppError? error,
     )
@@ -1529,7 +1533,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(
-      List<Character> characters,
+      List<CharacterModel> characters,
       FavoriteSort sort,
       AppError? error,
     )?
@@ -1545,7 +1549,7 @@ class _$ErrorImpl implements _Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(
-      List<Character> characters,
+      List<CharacterModel> characters,
       FavoriteSort sort,
       AppError? error,
     )?

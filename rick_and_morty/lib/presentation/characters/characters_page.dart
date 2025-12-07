@@ -5,7 +5,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import 'package:rick_and_morty/core/widgets/app_error_view.dart';
 import 'package:rick_and_morty/core/widgets/app_loading_indicator.dart';
-import 'package:rick_and_morty/domain/entities/character.dart';
+import 'package:rick_and_morty/domain/domain.dart';
 import 'package:rick_and_morty/presentation/widgets/character_card.dart';
 import 'package:rick_and_morty/presentation/favorites/bloc/favorites_bloc.dart';
 
@@ -20,13 +20,13 @@ class CharactersPage extends StatefulWidget {
 }
 
 class _CharactersPageState extends State<CharactersPage> {
-  late final PagingController<int, Character> _pagingController;
+  late final PagingController<int, CharacterModel> _pagingController;
   bool _didInit = false;
 
   @override
   void initState() {
     super.initState();
-    _pagingController = PagingController<int, Character>(firstPageKey: 1);
+    _pagingController = PagingController<int, CharacterModel>(firstPageKey: 1);
     _pagingController.addPageRequestListener(_onPageRequested);
   }
 
@@ -62,9 +62,9 @@ class _CharactersPageState extends State<CharactersPage> {
             context.read<CharactersBloc>().add(const CharactersEvent.refresh());
             _pagingController.refresh();
           },
-          child: PagedListView<int, Character>(
+          child: PagedListView<int, CharacterModel>(
             pagingController: _pagingController,
-            builderDelegate: PagedChildBuilderDelegate<Character>(
+            builderDelegate: PagedChildBuilderDelegate<CharacterModel>(
               itemBuilder: (context, character, index) {
                 final isFavorite = favoriteIds.contains(character.id);
                 return CharacterCard(
@@ -105,7 +105,7 @@ class _CharactersPageState extends State<CharactersPage> {
     context.read<CharactersBloc>().add(CharactersEvent.pageRequested(pageKey));
   }
 
-  void _onFavoriteTap(Character character) {
+  void _onFavoriteTap(CharacterModel character) {
     context.read<CharactersBloc>().add(
       CharactersEvent.toggleFavorite(character),
     );

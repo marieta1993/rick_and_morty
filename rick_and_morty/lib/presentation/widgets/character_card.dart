@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'package:rick_and_morty/domain/entities/character.dart';
+import 'package:rick_and_morty/domain/domain.dart';
 
 class CharacterCard extends StatelessWidget {
   const CharacterCard({
@@ -10,7 +9,7 @@ class CharacterCard extends StatelessWidget {
     required this.onFavoriteTap,
   });
 
-  final Character character;
+  final CharacterModel character;
   final bool isFavorite;
   final VoidCallback onFavoriteTap;
 
@@ -24,7 +23,7 @@ class CharacterCard extends StatelessWidget {
           padding: const EdgeInsets.all(12),
           child: Row(
             children: [
-              _CharacterImage(imageUrl: character.imageUrl),
+              _CharacterImage(imageUrl: character.image),
               const SizedBox(width: 16),
               Expanded(
                 child: Column(
@@ -52,7 +51,7 @@ class CharacterCard extends StatelessWidget {
                     const SizedBox(height: 4),
                     _InfoRow(label: 'Пол', value: character.gender),
                     const SizedBox(height: 4),
-                    _InfoRow(label: 'Локация', value: character.location),
+                    _InfoRow(label: 'Локация', value: character.location.name),
                   ],
                 ),
               ),

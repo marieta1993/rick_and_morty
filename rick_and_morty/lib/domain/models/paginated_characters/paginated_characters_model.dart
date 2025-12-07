@@ -1,6 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../entities/paginated_characters.dart';
 import '../character/character_model.dart';
 
 part 'paginated_characters_model.freezed.dart';
@@ -18,13 +17,18 @@ class PaginatedCharactersModel with _$PaginatedCharactersModel {
 }
 
 extension PaginatedCharactersModelMapper on PaginatedCharactersModel {
-  PaginatedCharacters toDomain() {
-    return PaginatedCharacters(
-      characters: results.map((model) => model.toDomain()).toList(),
-      currentPage: info.currentPage,
-      hasMore: info.next != null && info.next!.isNotEmpty,
+  PaginatedCharactersModel toDomain() {
+    return PaginatedCharactersModel(
+      info: info,
+      results: results.map((model) => model.toDomain()).toList(),
     );
   }
+
+  List<CharacterModel> get characters => results;
+
+  int get currentPage => info.currentPage;
+
+  bool get hasMore => info.hasMore;
 }
 
 @freezed
@@ -52,4 +56,6 @@ extension PageInfoModelMapper on PageInfoModel {
     }
     return prevPage + 1;
   }
+
+  bool get hasMore => next != null && next!.isNotEmpty;
 }

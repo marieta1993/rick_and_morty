@@ -13,3 +13,5 @@ class GetFavoriteIds implements UseCase<Set<int>, NoParams> {
   }
 }
 
+
+

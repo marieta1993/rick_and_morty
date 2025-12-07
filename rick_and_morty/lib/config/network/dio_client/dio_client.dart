@@ -10,7 +10,7 @@ abstract class DioClient {
   Dio dio() => Dio(
     BaseOptions(
       baseUrl: APIBase.url,
-      headers: {"Content-Type": "application/json"},
+      headers: {"Content-Type": HeaderValues.applicationJson},
     ),
   )..interceptors.addAll([ApiLoggingInterceptor()]);
 }

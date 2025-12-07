@@ -7,3 +7,5 @@ abstract class ThemeRepository {
   Future<AppResult<AppThemeMode>> updateTheme(AppThemeMode mode);
 }
 
+
+

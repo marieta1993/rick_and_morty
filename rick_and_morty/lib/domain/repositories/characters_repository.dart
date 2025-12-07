@@ -1,16 +1,14 @@
 import 'package:rick_and_morty/core/result/app_result.dart';
-import 'package:rick_and_morty/domain/entities/character.dart';
-import 'package:rick_and_morty/domain/entities/paginated_characters.dart';
-import 'package:rick_and_morty/domain/enums/favorite_sort.dart';
+import 'package:rick_and_morty/domain/domain.dart';
 
 abstract class CharactersRepository {
-  Future<AppResult<PaginatedCharacters>> getCharactersPage(int page);
+  Future<AppResult<PaginatedCharactersModel>> getCharactersPage(int page);
 
-  Future<AppResult<List<Character>>> getFavoriteCharacters(
+  Future<AppResult<List<CharacterModel>>> getFavoriteCharacters(
     FavoriteSort sort,
   );
 
-  Future<AppResult<bool>> toggleFavorite(Character character);
+  Future<AppResult<bool>> toggleFavorite(CharacterModel character);
 
   Future<AppResult<bool>> isFavorite(int id);
 
@@ -18,4 +16,3 @@ abstract class CharactersRepository {
 
   Future<AppResult<Set<int>>> getFavoriteIds();
 }
-

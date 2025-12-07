@@ -3,10 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:rick_and_morty/core/error/app_error.dart';
 import 'package:rick_and_morty/core/usecases/usecase.dart';
-import 'package:rick_and_morty/domain/entities/character.dart';
-import 'package:rick_and_morty/domain/usecases/get_characters_page.dart';
-import 'package:rick_and_morty/domain/usecases/get_favorite_ids.dart';
-import 'package:rick_and_morty/domain/usecases/toggle_favorite_character.dart';
+import 'package:rick_and_morty/domain/domain.dart';
 
 part 'characters_event.dart';
 part 'characters_state.dart';
@@ -60,7 +57,7 @@ class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
         final existingCharacters = state.maybeWhen(
           loaded: (_, characters, __, ___, ____, _____) => characters,
           error: (_, __, characters, ___, _____) => characters,
-          orElse: () => const <Character>[],
+          orElse: () => const <CharacterModel>[],
         );
         emit(
           CharactersState.error(
@@ -76,11 +73,11 @@ class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
         _hasMore = page.hasMore;
 
         final previousCharacters = pageKey == 1
-            ? <Character>[]
+            ? <CharacterModel>[]
             : state.maybeWhen(
                 loaded: (_, characters, __, ___, ____, _____) => characters,
                 error: (_, __, characters, ___, _____) => characters,
-                orElse: () => const <Character>[],
+                orElse: () => const <CharacterModel>[],
               );
 
         final combined = [...previousCharacters, ...page.characters];

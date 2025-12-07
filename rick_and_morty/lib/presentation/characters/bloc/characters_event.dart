@@ -8,7 +8,7 @@ class CharactersEvent with _$CharactersEvent {
 
   const factory CharactersEvent.refresh() = _Refresh;
 
-  const factory CharactersEvent.toggleFavorite(Character character) =
+  const factory CharactersEvent.toggleFavorite(CharacterModel character) =
       _ToggleFavorite;
 
   const factory CharactersEvent.favoritesRefreshed() = _FavoritesRefreshed;

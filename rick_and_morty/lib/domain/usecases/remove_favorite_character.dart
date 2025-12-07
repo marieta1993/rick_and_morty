@@ -20,3 +20,5 @@ class RemoveFavoriteCharacterParams {
   final int id;
 }
 
+
+

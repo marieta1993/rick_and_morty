@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:rick_and_morty/config/network/constants/constants.dart';
 import 'package:rick_and_morty/config/network/interceptor/interceptor.dart';
 
 class ApiClient {
@@ -12,7 +13,7 @@ class ApiClient {
 Dio createDioClient() {
   final dio = Dio(
     BaseOptions(
-      baseUrl: 'https://rickandmortyapi.com/api',
+      baseUrl: APIBase.url,
       connectTimeout: const Duration(seconds: 10),
       receiveTimeout: const Duration(seconds: 10),
     ),

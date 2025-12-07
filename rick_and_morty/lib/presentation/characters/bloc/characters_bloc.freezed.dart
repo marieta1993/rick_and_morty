@@ -22,7 +22,7 @@ mixin _$CharactersEvent {
     required TResult Function() started,
     required TResult Function(int pageKey) pageRequested,
     required TResult Function() refresh,
-    required TResult Function(Character character) toggleFavorite,
+    required TResult Function(CharacterModel character) toggleFavorite,
     required TResult Function() favoritesRefreshed,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,7 +30,7 @@ mixin _$CharactersEvent {
     TResult? Function()? started,
     TResult? Function(int pageKey)? pageRequested,
     TResult? Function()? refresh,
-    TResult? Function(Character character)? toggleFavorite,
+    TResult? Function(CharacterModel character)? toggleFavorite,
     TResult? Function()? favoritesRefreshed,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,7 +38,7 @@ mixin _$CharactersEvent {
     TResult Function()? started,
     TResult Function(int pageKey)? pageRequested,
     TResult Function()? refresh,
-    TResult Function(Character character)? toggleFavorite,
+    TResult Function(CharacterModel character)? toggleFavorite,
     TResult Function()? favoritesRefreshed,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
@@ -137,7 +137,7 @@ class _$StartedImpl implements _Started {
     required TResult Function() started,
     required TResult Function(int pageKey) pageRequested,
     required TResult Function() refresh,
-    required TResult Function(Character character) toggleFavorite,
+    required TResult Function(CharacterModel character) toggleFavorite,
     required TResult Function() favoritesRefreshed,
   }) {
     return started();
@@ -149,7 +149,7 @@ class _$StartedImpl implements _Started {
     TResult? Function()? started,
     TResult? Function(int pageKey)? pageRequested,
     TResult? Function()? refresh,
-    TResult? Function(Character character)? toggleFavorite,
+    TResult? Function(CharacterModel character)? toggleFavorite,
     TResult? Function()? favoritesRefreshed,
   }) {
     return started?.call();
@@ -161,7 +161,7 @@ class _$StartedImpl implements _Started {
     TResult Function()? started,
     TResult Function(int pageKey)? pageRequested,
     TResult Function()? refresh,
-    TResult Function(Character character)? toggleFavorite,
+    TResult Function(CharacterModel character)? toggleFavorite,
     TResult Function()? favoritesRefreshed,
     required TResult orElse(),
   }) {
@@ -289,7 +289,7 @@ class _$PageRequestedImpl implements _PageRequested {
     required TResult Function() started,
     required TResult Function(int pageKey) pageRequested,
     required TResult Function() refresh,
-    required TResult Function(Character character) toggleFavorite,
+    required TResult Function(CharacterModel character) toggleFavorite,
     required TResult Function() favoritesRefreshed,
   }) {
     return pageRequested(pageKey);
@@ -301,7 +301,7 @@ class _$PageRequestedImpl implements _PageRequested {
     TResult? Function()? started,
     TResult? Function(int pageKey)? pageRequested,
     TResult? Function()? refresh,
-    TResult? Function(Character character)? toggleFavorite,
+    TResult? Function(CharacterModel character)? toggleFavorite,
     TResult? Function()? favoritesRefreshed,
   }) {
     return pageRequested?.call(pageKey);
@@ -313,7 +313,7 @@ class _$PageRequestedImpl implements _PageRequested {
     TResult Function()? started,
     TResult Function(int pageKey)? pageRequested,
     TResult Function()? refresh,
-    TResult Function(Character character)? toggleFavorite,
+    TResult Function(CharacterModel character)? toggleFavorite,
     TResult Function()? favoritesRefreshed,
     required TResult orElse(),
   }) {
@@ -422,7 +422,7 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function() started,
     required TResult Function(int pageKey) pageRequested,
     required TResult Function() refresh,
-    required TResult Function(Character character) toggleFavorite,
+    required TResult Function(CharacterModel character) toggleFavorite,
     required TResult Function() favoritesRefreshed,
   }) {
     return refresh();
@@ -434,7 +434,7 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function()? started,
     TResult? Function(int pageKey)? pageRequested,
     TResult? Function()? refresh,
-    TResult? Function(Character character)? toggleFavorite,
+    TResult? Function(CharacterModel character)? toggleFavorite,
     TResult? Function()? favoritesRefreshed,
   }) {
     return refresh?.call();
@@ -446,7 +446,7 @@ class _$RefreshImpl implements _Refresh {
     TResult Function()? started,
     TResult Function(int pageKey)? pageRequested,
     TResult Function()? refresh,
-    TResult Function(Character character)? toggleFavorite,
+    TResult Function(CharacterModel character)? toggleFavorite,
     TResult Function()? favoritesRefreshed,
     required TResult orElse(),
   }) {
@@ -508,9 +508,9 @@ abstract class _$$ToggleFavoriteImplCopyWith<$Res> {
     $Res Function(_$ToggleFavoriteImpl) then,
   ) = __$$ToggleFavoriteImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({Character character});
+  $Res call({CharacterModel character});
 
-  $CharacterCopyWith<$Res> get character;
+  $CharacterModelCopyWith<$Res> get character;
 }
 
 /// @nodoc
@@ -532,7 +532,7 @@ class __$$ToggleFavoriteImplCopyWithImpl<$Res>
         null == character
             ? _value.character
             : character // ignore: cast_nullable_to_non_nullable
-                  as Character,
+                  as CharacterModel,
       ),
     );
   }
@@ -541,8 +541,8 @@ class __$$ToggleFavoriteImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $CharacterCopyWith<$Res> get character {
-    return $CharacterCopyWith<$Res>(_value.character, (value) {
+  $CharacterModelCopyWith<$Res> get character {
+    return $CharacterModelCopyWith<$Res>(_value.character, (value) {
       return _then(_value.copyWith(character: value));
     });
   }
@@ -554,7 +554,7 @@ class _$ToggleFavoriteImpl implements _ToggleFavorite {
   const _$ToggleFavoriteImpl(this.character);
 
   @override
-  final Character character;
+  final CharacterModel character;
 
   @override
   String toString() {
@@ -590,7 +590,7 @@ class _$ToggleFavoriteImpl implements _ToggleFavorite {
     required TResult Function() started,
     required TResult Function(int pageKey) pageRequested,
     required TResult Function() refresh,
-    required TResult Function(Character character) toggleFavorite,
+    required TResult Function(CharacterModel character) toggleFavorite,
     required TResult Function() favoritesRefreshed,
   }) {
     return toggleFavorite(character);
@@ -602,7 +602,7 @@ class _$ToggleFavoriteImpl implements _ToggleFavorite {
     TResult? Function()? started,
     TResult? Function(int pageKey)? pageRequested,
     TResult? Function()? refresh,
-    TResult? Function(Character character)? toggleFavorite,
+    TResult? Function(CharacterModel character)? toggleFavorite,
     TResult? Function()? favoritesRefreshed,
   }) {
     return toggleFavorite?.call(character);
@@ -614,7 +614,7 @@ class _$ToggleFavoriteImpl implements _ToggleFavorite {
     TResult Function()? started,
     TResult Function(int pageKey)? pageRequested,
     TResult Function()? refresh,
-    TResult Function(Character character)? toggleFavorite,
+    TResult Function(CharacterModel character)? toggleFavorite,
     TResult Function()? favoritesRefreshed,
     required TResult orElse(),
   }) {
@@ -666,10 +666,10 @@ class _$ToggleFavoriteImpl implements _ToggleFavorite {
 }
 
 abstract class _ToggleFavorite implements CharactersEvent {
-  const factory _ToggleFavorite(final Character character) =
+  const factory _ToggleFavorite(final CharacterModel character) =
       _$ToggleFavoriteImpl;
 
-  Character get character;
+  CharacterModel get character;
 
   /// Create a copy of CharactersEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -724,7 +724,7 @@ class _$FavoritesRefreshedImpl implements _FavoritesRefreshed {
     required TResult Function() started,
     required TResult Function(int pageKey) pageRequested,
     required TResult Function() refresh,
-    required TResult Function(Character character) toggleFavorite,
+    required TResult Function(CharacterModel character) toggleFavorite,
     required TResult Function() favoritesRefreshed,
   }) {
     return favoritesRefreshed();
@@ -736,7 +736,7 @@ class _$FavoritesRefreshedImpl implements _FavoritesRefreshed {
     TResult? Function()? started,
     TResult? Function(int pageKey)? pageRequested,
     TResult? Function()? refresh,
-    TResult? Function(Character character)? toggleFavorite,
+    TResult? Function(CharacterModel character)? toggleFavorite,
     TResult? Function()? favoritesRefreshed,
   }) {
     return favoritesRefreshed?.call();
@@ -748,7 +748,7 @@ class _$FavoritesRefreshedImpl implements _FavoritesRefreshed {
     TResult Function()? started,
     TResult Function(int pageKey)? pageRequested,
     TResult Function()? refresh,
-    TResult Function(Character character)? toggleFavorite,
+    TResult Function(CharacterModel character)? toggleFavorite,
     TResult Function()? favoritesRefreshed,
     required TResult orElse(),
   }) {
@@ -811,8 +811,8 @@ mixin _$CharactersState {
     required TResult Function() loading,
     required TResult Function(
       int page,
-      List<Character> characters,
-      List<Character> pageItems,
+      List<CharacterModel> characters,
+      List<CharacterModel> pageItems,
       bool hasMore,
       Set<int> favoriteIds,
       AppError? error,
@@ -821,7 +821,7 @@ mixin _$CharactersState {
     required TResult Function(
       AppError error,
       int page,
-      List<Character> characters,
+      List<CharacterModel> characters,
       bool hasMore,
       Set<int> favoriteIds,
     )
@@ -833,8 +833,8 @@ mixin _$CharactersState {
     TResult? Function()? loading,
     TResult? Function(
       int page,
-      List<Character> characters,
-      List<Character> pageItems,
+      List<CharacterModel> characters,
+      List<CharacterModel> pageItems,
       bool hasMore,
       Set<int> favoriteIds,
       AppError? error,
@@ -843,7 +843,7 @@ mixin _$CharactersState {
     TResult? Function(
       AppError error,
       int page,
-      List<Character> characters,
+      List<CharacterModel> characters,
       bool hasMore,
       Set<int> favoriteIds,
     )?
@@ -855,8 +855,8 @@ mixin _$CharactersState {
     TResult Function()? loading,
     TResult Function(
       int page,
-      List<Character> characters,
-      List<Character> pageItems,
+      List<CharacterModel> characters,
+      List<CharacterModel> pageItems,
       bool hasMore,
       Set<int> favoriteIds,
       AppError? error,
@@ -865,7 +865,7 @@ mixin _$CharactersState {
     TResult Function(
       AppError error,
       int page,
-      List<Character> characters,
+      List<CharacterModel> characters,
       bool hasMore,
       Set<int> favoriteIds,
     )?
@@ -965,8 +965,8 @@ class _$InitialImpl implements _Initial {
     required TResult Function() loading,
     required TResult Function(
       int page,
-      List<Character> characters,
-      List<Character> pageItems,
+      List<CharacterModel> characters,
+      List<CharacterModel> pageItems,
       bool hasMore,
       Set<int> favoriteIds,
       AppError? error,
@@ -975,7 +975,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function(
       AppError error,
       int page,
-      List<Character> characters,
+      List<CharacterModel> characters,
       bool hasMore,
       Set<int> favoriteIds,
     )
@@ -991,8 +991,8 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? loading,
     TResult? Function(
       int page,
-      List<Character> characters,
-      List<Character> pageItems,
+      List<CharacterModel> characters,
+      List<CharacterModel> pageItems,
       bool hasMore,
       Set<int> favoriteIds,
       AppError? error,
@@ -1001,7 +1001,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(
       AppError error,
       int page,
-      List<Character> characters,
+      List<CharacterModel> characters,
       bool hasMore,
       Set<int> favoriteIds,
     )?
@@ -1017,8 +1017,8 @@ class _$InitialImpl implements _Initial {
     TResult Function()? loading,
     TResult Function(
       int page,
-      List<Character> characters,
-      List<Character> pageItems,
+      List<CharacterModel> characters,
+      List<CharacterModel> pageItems,
       bool hasMore,
       Set<int> favoriteIds,
       AppError? error,
@@ -1027,7 +1027,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(
       AppError error,
       int page,
-      List<Character> characters,
+      List<CharacterModel> characters,
       bool hasMore,
       Set<int> favoriteIds,
     )?
@@ -1129,8 +1129,8 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() loading,
     required TResult Function(
       int page,
-      List<Character> characters,
-      List<Character> pageItems,
+      List<CharacterModel> characters,
+      List<CharacterModel> pageItems,
       bool hasMore,
       Set<int> favoriteIds,
       AppError? error,
@@ -1139,7 +1139,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(
       AppError error,
       int page,
-      List<Character> characters,
+      List<CharacterModel> characters,
       bool hasMore,
       Set<int> favoriteIds,
     )
@@ -1155,8 +1155,8 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? loading,
     TResult? Function(
       int page,
-      List<Character> characters,
-      List<Character> pageItems,
+      List<CharacterModel> characters,
+      List<CharacterModel> pageItems,
       bool hasMore,
       Set<int> favoriteIds,
       AppError? error,
@@ -1165,7 +1165,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(
       AppError error,
       int page,
-      List<Character> characters,
+      List<CharacterModel> characters,
       bool hasMore,
       Set<int> favoriteIds,
     )?
@@ -1181,8 +1181,8 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? loading,
     TResult Function(
       int page,
-      List<Character> characters,
-      List<Character> pageItems,
+      List<CharacterModel> characters,
+      List<CharacterModel> pageItems,
       bool hasMore,
       Set<int> favoriteIds,
       AppError? error,
@@ -1191,7 +1191,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(
       AppError error,
       int page,
-      List<Character> characters,
+      List<CharacterModel> characters,
       bool hasMore,
       Set<int> favoriteIds,
     )?
@@ -1255,8 +1255,8 @@ abstract class _$$LoadedImplCopyWith<$Res> {
   @useResult
   $Res call({
     int page,
-    List<Character> characters,
-    List<Character> pageItems,
+    List<CharacterModel> characters,
+    List<CharacterModel> pageItems,
     bool hasMore,
     Set<int> favoriteIds,
     AppError? error,
@@ -1293,11 +1293,11 @@ class __$$LoadedImplCopyWithImpl<$Res>
         characters: null == characters
             ? _value._characters
             : characters // ignore: cast_nullable_to_non_nullable
-                  as List<Character>,
+                  as List<CharacterModel>,
         pageItems: null == pageItems
             ? _value._pageItems
             : pageItems // ignore: cast_nullable_to_non_nullable
-                  as List<Character>,
+                  as List<CharacterModel>,
         hasMore: null == hasMore
             ? _value.hasMore
             : hasMore // ignore: cast_nullable_to_non_nullable
@@ -1320,8 +1320,8 @@ class __$$LoadedImplCopyWithImpl<$Res>
 class _$LoadedImpl implements _Loaded {
   const _$LoadedImpl({
     required this.page,
-    required final List<Character> characters,
-    required final List<Character> pageItems,
+    required final List<CharacterModel> characters,
+    required final List<CharacterModel> pageItems,
     required this.hasMore,
     required final Set<int> favoriteIds,
     this.error,
@@ -1331,17 +1331,17 @@ class _$LoadedImpl implements _Loaded {
 
   @override
   final int page;
-  final List<Character> _characters;
+  final List<CharacterModel> _characters;
   @override
-  List<Character> get characters {
+  List<CharacterModel> get characters {
     if (_characters is EqualUnmodifiableListView) return _characters;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_characters);
   }
 
-  final List<Character> _pageItems;
+  final List<CharacterModel> _pageItems;
   @override
-  List<Character> get pageItems {
+  List<CharacterModel> get pageItems {
     if (_pageItems is EqualUnmodifiableListView) return _pageItems;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_pageItems);
@@ -1413,8 +1413,8 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function() loading,
     required TResult Function(
       int page,
-      List<Character> characters,
-      List<Character> pageItems,
+      List<CharacterModel> characters,
+      List<CharacterModel> pageItems,
       bool hasMore,
       Set<int> favoriteIds,
       AppError? error,
@@ -1423,7 +1423,7 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function(
       AppError error,
       int page,
-      List<Character> characters,
+      List<CharacterModel> characters,
       bool hasMore,
       Set<int> favoriteIds,
     )
@@ -1446,8 +1446,8 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function()? loading,
     TResult? Function(
       int page,
-      List<Character> characters,
-      List<Character> pageItems,
+      List<CharacterModel> characters,
+      List<CharacterModel> pageItems,
       bool hasMore,
       Set<int> favoriteIds,
       AppError? error,
@@ -1456,7 +1456,7 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function(
       AppError error,
       int page,
-      List<Character> characters,
+      List<CharacterModel> characters,
       bool hasMore,
       Set<int> favoriteIds,
     )?
@@ -1479,8 +1479,8 @@ class _$LoadedImpl implements _Loaded {
     TResult Function()? loading,
     TResult Function(
       int page,
-      List<Character> characters,
-      List<Character> pageItems,
+      List<CharacterModel> characters,
+      List<CharacterModel> pageItems,
       bool hasMore,
       Set<int> favoriteIds,
       AppError? error,
@@ -1489,7 +1489,7 @@ class _$LoadedImpl implements _Loaded {
     TResult Function(
       AppError error,
       int page,
-      List<Character> characters,
+      List<CharacterModel> characters,
       bool hasMore,
       Set<int> favoriteIds,
     )?
@@ -1550,16 +1550,16 @@ class _$LoadedImpl implements _Loaded {
 abstract class _Loaded implements CharactersState {
   const factory _Loaded({
     required final int page,
-    required final List<Character> characters,
-    required final List<Character> pageItems,
+    required final List<CharacterModel> characters,
+    required final List<CharacterModel> pageItems,
     required final bool hasMore,
     required final Set<int> favoriteIds,
     final AppError? error,
   }) = _$LoadedImpl;
 
   int get page;
-  List<Character> get characters;
-  List<Character> get pageItems;
+  List<CharacterModel> get characters;
+  List<CharacterModel> get pageItems;
   bool get hasMore;
   Set<int> get favoriteIds;
   AppError? get error;
@@ -1581,7 +1581,7 @@ abstract class _$$ErrorImplCopyWith<$Res> {
   $Res call({
     AppError error,
     int page,
-    List<Character> characters,
+    List<CharacterModel> characters,
     bool hasMore,
     Set<int> favoriteIds,
   });
@@ -1620,7 +1620,7 @@ class __$$ErrorImplCopyWithImpl<$Res>
         characters: null == characters
             ? _value._characters
             : characters // ignore: cast_nullable_to_non_nullable
-                  as List<Character>,
+                  as List<CharacterModel>,
         hasMore: null == hasMore
             ? _value.hasMore
             : hasMore // ignore: cast_nullable_to_non_nullable
@@ -1640,7 +1640,7 @@ class _$ErrorImpl implements _Error {
   const _$ErrorImpl({
     required this.error,
     required this.page,
-    required final List<Character> characters,
+    required final List<CharacterModel> characters,
     required this.hasMore,
     required final Set<int> favoriteIds,
   }) : _characters = characters,
@@ -1650,9 +1650,9 @@ class _$ErrorImpl implements _Error {
   final AppError error;
   @override
   final int page;
-  final List<Character> _characters;
+  final List<CharacterModel> _characters;
   @override
-  List<Character> get characters {
+  List<CharacterModel> get characters {
     if (_characters is EqualUnmodifiableListView) return _characters;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_characters);
@@ -1716,8 +1716,8 @@ class _$ErrorImpl implements _Error {
     required TResult Function() loading,
     required TResult Function(
       int page,
-      List<Character> characters,
-      List<Character> pageItems,
+      List<CharacterModel> characters,
+      List<CharacterModel> pageItems,
       bool hasMore,
       Set<int> favoriteIds,
       AppError? error,
@@ -1726,7 +1726,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function(
       AppError error,
       int page,
-      List<Character> characters,
+      List<CharacterModel> characters,
       bool hasMore,
       Set<int> favoriteIds,
     )
@@ -1742,8 +1742,8 @@ class _$ErrorImpl implements _Error {
     TResult? Function()? loading,
     TResult? Function(
       int page,
-      List<Character> characters,
-      List<Character> pageItems,
+      List<CharacterModel> characters,
+      List<CharacterModel> pageItems,
       bool hasMore,
       Set<int> favoriteIds,
       AppError? error,
@@ -1752,7 +1752,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function(
       AppError error,
       int page,
-      List<Character> characters,
+      List<CharacterModel> characters,
       bool hasMore,
       Set<int> favoriteIds,
     )?
@@ -1768,8 +1768,8 @@ class _$ErrorImpl implements _Error {
     TResult Function()? loading,
     TResult Function(
       int page,
-      List<Character> characters,
-      List<Character> pageItems,
+      List<CharacterModel> characters,
+      List<CharacterModel> pageItems,
       bool hasMore,
       Set<int> favoriteIds,
       AppError? error,
@@ -1778,7 +1778,7 @@ class _$ErrorImpl implements _Error {
     TResult Function(
       AppError error,
       int page,
-      List<Character> characters,
+      List<CharacterModel> characters,
       bool hasMore,
       Set<int> favoriteIds,
     )?
@@ -1833,14 +1833,14 @@ abstract class _Error implements CharactersState {
   const factory _Error({
     required final AppError error,
     required final int page,
-    required final List<Character> characters,
+    required final List<CharacterModel> characters,
     required final bool hasMore,
     required final Set<int> favoriteIds,
   }) = _$ErrorImpl;
 
   AppError get error;
   int get page;
-  List<Character> get characters;
+  List<CharacterModel> get characters;
   bool get hasMore;
   Set<int> get favoriteIds;
 

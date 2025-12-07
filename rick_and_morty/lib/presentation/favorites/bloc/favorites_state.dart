@@ -7,13 +7,10 @@ class FavoritesState with _$FavoritesState {
   const factory FavoritesState.loading() = _Loading;
 
   const factory FavoritesState.loaded({
-    required List<Character> characters,
+    required List<CharacterModel> characters,
     required FavoriteSort sort,
     AppError? error,
   }) = _Loaded;
 
-  const factory FavoritesState.error({
-    required AppError error,
-  }) = _Error;
+  const factory FavoritesState.error({required AppError error}) = _Error;
 }
-

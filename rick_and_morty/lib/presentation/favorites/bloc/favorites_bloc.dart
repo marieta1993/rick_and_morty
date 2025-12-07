@@ -2,11 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:rick_and_morty/core/error/app_error.dart';
-import 'package:rick_and_morty/domain/entities/character.dart';
-import 'package:rick_and_morty/domain/enums/favorite_sort.dart';
-import 'package:rick_and_morty/domain/usecases/get_favorite_characters.dart';
-import 'package:rick_and_morty/domain/usecases/remove_favorite_character.dart';
-import 'package:rick_and_morty/domain/usecases/toggle_favorite_character.dart';
+import 'package:rick_and_morty/domain/domain.dart';
 
 part 'favorites_event.dart';
 part 'favorites_state.dart';

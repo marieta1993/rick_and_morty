@@ -1,17 +1,16 @@
 import 'package:rick_and_morty/core/result/app_result.dart';
 import 'package:rick_and_morty/core/usecases/usecase.dart';
-import 'package:rick_and_morty/domain/entities/character.dart';
-import 'package:rick_and_morty/domain/enums/favorite_sort.dart';
+import 'package:rick_and_morty/domain/domain.dart';
 import 'package:rick_and_morty/domain/repositories/characters_repository.dart';
 
 class GetFavoriteCharacters
-    implements UseCase<List<Character>, GetFavoriteCharactersParams> {
+    implements UseCase<List<CharacterModel>, GetFavoriteCharactersParams> {
   GetFavoriteCharacters(this.repository);
 
   final CharactersRepository repository;
 
   @override
-  Future<AppResult<List<Character>>> call(
+  Future<AppResult<List<CharacterModel>>> call(
     GetFavoriteCharactersParams params,
   ) {
     return repository.getFavoriteCharacters(params.sort);

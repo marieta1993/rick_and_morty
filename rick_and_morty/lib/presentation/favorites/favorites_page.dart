@@ -4,8 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:rick_and_morty/core/widgets/app_error_view.dart';
 import 'package:rick_and_morty/core/widgets/app_loading_indicator.dart';
-import 'package:rick_and_morty/domain/entities/character.dart';
-import 'package:rick_and_morty/domain/enums/favorite_sort.dart';
+import 'package:rick_and_morty/domain/domain.dart';
 import 'package:rick_and_morty/presentation/characters/bloc/characters_bloc.dart';
 import 'package:rick_and_morty/presentation/widgets/character_card.dart';
 
@@ -133,7 +132,7 @@ class FavoritesPage extends StatelessWidget {
     context.read<FavoritesBloc>().add(FavoritesEvent.sortChanged(sort));
   }
 
-  void _onFavoriteTap(BuildContext context, Character character) {
+  void _onFavoriteTap(BuildContext context, CharacterModel character) {
     context.read<FavoritesBloc>().add(FavoritesEvent.toggleFavorite(character));
   }
 }

@@ -1,7 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../entities/character.dart';
-
 part 'character_model.freezed.dart';
 part 'character_model.g.dart';
 
@@ -21,39 +19,37 @@ class CharacterModel with _$CharacterModel {
   factory CharacterModel.fromJson(Map<String, dynamic> json) =>
       _$CharacterModelFromJson(json);
 
-  factory CharacterModel.fromDomain(Character character) => CharacterModel(
-        id: character.id,
-        name: character.name,
-        status: character.status,
-        species: character.species,
-        gender: character.gender,
-        image: character.imageUrl,
-        origin: LocationModel(name: character.origin, url: ''),
-        location: LocationModel(name: character.location, url: ''),
-      );
+  factory CharacterModel.fromDomain(CharacterModel character) => CharacterModel(
+    id: character.id,
+    name: character.name,
+    status: character.status,
+    species: character.species,
+    gender: character.gender,
+    image: character.image,
+    origin: character.origin,
+    location: character.location,
+  );
 }
 
 extension CharacterModelMapper on CharacterModel {
-  Character toDomain() {
-    return Character(
+  CharacterModel toDomain() {
+    return CharacterModel(
       id: id,
       name: name,
       status: status,
       species: species,
       gender: gender,
-      imageUrl: image,
-      origin: origin.name,
-      location: location.name,
+      image: image,
+      origin: origin,
+      location: location,
     );
   }
 }
 
 @freezed
 class LocationModel with _$LocationModel {
-  const factory LocationModel({
-    required String name,
-    required String url,
-  }) = _LocationModel;
+  const factory LocationModel({required String name, required String url}) =
+      _LocationModel;
 
   factory LocationModel.fromJson(Map<String, dynamic> json) =>
       _$LocationModelFromJson(json);

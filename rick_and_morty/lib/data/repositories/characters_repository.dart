@@ -6,8 +6,6 @@ import 'package:rick_and_morty/core/result/app_result.dart';
 import 'package:rick_and_morty/data/remote/characters_local_data_source.dart';
 import 'package:rick_and_morty/data/remote/characters_remote_data_source.dart';
 import 'package:rick_and_morty/data/remote/favorites_local_data_source.dart';
-import 'package:rick_and_morty/domain/entities/character.dart';
-import 'package:rick_and_morty/domain/entities/paginated_characters.dart';
 import 'package:rick_and_morty/domain/enums/favorite_sort.dart';
 import 'package:rick_and_morty/domain/models/character/character_model.dart';
 import 'package:rick_and_morty/domain/models/paginated_characters/paginated_characters_model.dart';
@@ -21,10 +19,10 @@ class CharactersRepositoryImpl implements CharactersRepository {
     required CharactersLocalDataSource localDataSource,
     required FavoritesLocalDataSource favoritesLocalDataSource,
     required NetworkInfo networkInfo,
-  })  : _remoteDataSource = remoteDataSource,
-        _localDataSource = localDataSource,
-        _favoritesLocalDataSource = favoritesLocalDataSource,
-        _networkInfo = networkInfo;
+  }) : _remoteDataSource = remoteDataSource,
+       _localDataSource = localDataSource,
+       _favoritesLocalDataSource = favoritesLocalDataSource,
+       _networkInfo = networkInfo;
 
   final CharactersRemoteDataSource _remoteDataSource;
   final CharactersLocalDataSource _localDataSource;
@@ -32,7 +30,9 @@ class CharactersRepositoryImpl implements CharactersRepository {
   final NetworkInfo _networkInfo;
 
   @override
-  Future<AppResult<PaginatedCharacters>> getCharactersPage(int page) async {
+  Future<AppResult<PaginatedCharactersModel>> getCharactersPage(
+    int page,
+  ) async {
     try {
       if (await _networkInfo.isConnected) {
         final remoteModel = await _remoteDataSource.getCharactersPage(page);
@@ -76,7 +76,7 @@ class CharactersRepositoryImpl implements CharactersRepository {
   }
 
   @override
-  Future<AppResult<List<Character>>> getFavoriteCharacters(
+  Future<AppResult<List<CharacterModel>>> getFavoriteCharacters(
     FavoriteSort sort,
   ) async {
     try {
@@ -103,7 +103,7 @@ class CharactersRepositoryImpl implements CharactersRepository {
   }
 
   @override
-  Future<AppResult<bool>> toggleFavorite(Character character) async {
+  Future<AppResult<bool>> toggleFavorite(CharacterModel character) async {
     try {
       final favorites = await _favoritesLocalDataSource.fetchFavorites();
       final index = favorites.indexWhere((item) => item.id == character.id);
@@ -130,8 +130,9 @@ class CharactersRepositoryImpl implements CharactersRepository {
   Future<AppResult<bool>> removeFavorite(int id) async {
     try {
       final favorites = await _favoritesLocalDataSource.fetchFavorites();
-      final newFavorites =
-          favorites.where((character) => character.id != id).toList();
+      final newFavorites = favorites
+          .where((character) => character.id != id)
+          .toList();
       await _favoritesLocalDataSource.saveFavorites(newFavorites);
       return AppResult.success(newFavorites.length != favorites.length);
     } on CacheException catch (error) {
