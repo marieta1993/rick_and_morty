@@ -24,3 +24,5 @@ class AppResult<T> {
     return success(data as T);
   }
 }
+
+

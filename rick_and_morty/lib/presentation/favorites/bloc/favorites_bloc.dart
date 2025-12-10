@@ -30,19 +30,21 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
   final ToggleFavoriteCharacter _toggleFavoriteCharacter;
   final RemoveFavoriteCharacter _removeFavoriteCharacter;
 
-  FavoriteSort _currentSort = FavoriteSort.name;
-
   Future<void> _onStarted(_Started event, Emitter<FavoritesState> emit) async {
-    _currentSort = event.sort ?? FavoriteSort.name;
-    await _loadFavorites(emit);
+    await _loadFavorites(
+      emit,
+      sort: event.sort ?? FavoriteSort.name,
+    );
   }
 
   Future<void> _onSortChanged(
     _SortChanged event,
     Emitter<FavoritesState> emit,
   ) async {
-    _currentSort = event.sort;
-    await _loadFavorites(emit);
+    await _loadFavorites(
+      emit,
+      sort: event.sort,
+    );
   }
 
   Future<void> _onToggleFavorite(
@@ -90,19 +92,26 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
   Future<void> _loadFavorites(
     Emitter<FavoritesState> emit, {
     bool showLoading = true,
+    FavoriteSort? sort,
   }) async {
+    final FavoriteSort effectiveSort = sort ??
+        state.maybeWhen(
+          loaded: (_, sort, __) => sort,
+          orElse: () => FavoriteSort.name,
+        );
+
     if (showLoading) {
       emit(const FavoritesState.loading());
     }
 
     final result = await _getFavoriteCharacters(
-      GetFavoriteCharactersParams(sort: _currentSort),
+      GetFavoriteCharactersParams(sort: effectiveSort),
     );
 
     result.when(
       failure: (error) => emit(FavoritesState.error(error: error)),
       success: (characters) => emit(
-        FavoritesState.loaded(characters: characters, sort: _currentSort),
+        FavoritesState.loaded(characters: characters, sort: effectiveSort),
       ),
     );
   }

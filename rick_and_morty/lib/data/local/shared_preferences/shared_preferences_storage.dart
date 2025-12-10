@@ -11,7 +11,20 @@ class SharedPreferencesStorage implements KeyValueStorage {
 
   @override
   Future<String?> readString(String key) async {
-    return preferences.getString(key);
+    // Используем generic get, чтобы избежать краша,
+    // когда под тем же ключом ранее хранился другой тип
+    // (например, List<String>), а теперь ожидается String.
+    final Object? raw = preferences.get(key);
+
+    if (raw == null || raw is String) {
+      return raw as String?;
+    }
+
+    // Если тип не String, значит формат поменялся.
+    // Очищаем ключ, чтобы не падать, и просто считаем,
+    // что значения нет (миграция "в ноль").
+    await preferences.remove(key);
+    return null;
   }
 
   @override

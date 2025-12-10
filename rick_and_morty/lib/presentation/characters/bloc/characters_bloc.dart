@@ -31,17 +31,11 @@ class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
   final GetFavoriteIds _getFavoriteIds;
   final ToggleFavoriteCharacter _toggleFavoriteCharacter;
 
-  bool _hasMore = true;
-  Set<int> _favoriteIds = {};
-
   Future<void> _onStarted(_Started event, Emitter<CharactersState> emit) async {
     emit(const CharactersState.loading());
-    await _loadFavoriteIds();
   }
 
   Future<void> _onRefresh(_Refresh event, Emitter<CharactersState> emit) async {
-    await _loadFavoriteIds();
-    _hasMore = true;
     emit(const CharactersState.loading());
   }
 
@@ -54,47 +48,68 @@ class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
       GetCharactersPageParams(page: pageKey),
     );
 
-    result.when(
-      failure: (error) {
-        final existingCharacters = state.maybeWhen(
-          loaded: (_, characters, __, ___, ____, _____) => characters,
-          error: (_, __, characters, ___, _____) => characters,
-          orElse: () => const <CharacterModel>[],
-        );
-        emit(
-          CharactersState.error(
-            error: error,
-            page: pageKey,
-            characters: pageKey == 1 ? const [] : existingCharacters,
-            hasMore: _hasMore,
-            favoriteIds: _favoriteIds,
-          ),
-        );
-      },
-      success: (page) {
-        _hasMore = page.hasMore;
+    if (result.hasError) {
+      final error = result.error!;
 
-        final previousCharacters = pageKey == 1
-            ? <CharacterModel>[]
-            : state.maybeWhen(
-                loaded: (_, characters, __, ___, ____, _____) => characters,
-                error: (_, __, characters, ___, _____) => characters,
-                orElse: () => const <CharacterModel>[],
-              );
+      final hasMore = state.maybeWhen(
+        loaded: (_, __, ___, hasMore, ____, _____) => hasMore,
+        error: (_, __, ___, hasMore, _____) => hasMore,
+        orElse: () => true,
+      );
+      final favoriteIds = state.maybeWhen(
+        loaded: (_, __, ___, ____, favoriteIds, _____) => favoriteIds,
+        error: (_, __, ___, ____, favoriteIds) => favoriteIds,
+        orElse: () => <int>{},
+      );
 
-        final combined = [...previousCharacters, ...page.characters];
+      final existingCharacters = state.maybeWhen(
+        loaded: (_, characters, __, ___, ____, _____) => characters,
+        error: (_, __, characters, ___, _____) => characters,
+        orElse: () => const <CharacterModel>[],
+      );
 
-        emit(
-          CharactersState.loaded(
-            page: pageKey,
-            characters: combined,
-            pageItems: page.characters,
-            hasMore: _hasMore,
-            favoriteIds: _favoriteIds,
-            error: null,
-          ),
-        );
-      },
+      emit(
+        CharactersState.error(
+          error: error,
+          page: pageKey,
+          characters: pageKey == 1 ? const [] : existingCharacters,
+          hasMore: hasMore,
+          favoriteIds: favoriteIds,
+        ),
+      );
+      return;
+    }
+
+    final page = result.data!;
+    final hasMore = page.hasMore;
+
+    final previousCharacters = pageKey == 1
+        ? <CharacterModel>[]
+        : state.maybeWhen(
+            loaded: (_, characters, __, ___, ____, _____) => characters,
+            error: (_, __, characters, ___, _____) => characters,
+            orElse: () => const <CharacterModel>[],
+          );
+
+    final combined = [...previousCharacters, ...page.characters];
+
+    // Для обновления избранного запрашиваем ids здесь,
+    // внутри самого обработчика события (а не в callback `when`).
+    final favoriteResult = await _getFavoriteIds(const NoParams());
+    final favoriteIds = favoriteResult.when(
+      success: (ids) => ids,
+      failure: (_) => <int>{},
+    );
+
+    emit(
+      CharactersState.loaded(
+        page: pageKey,
+        characters: combined,
+        pageItems: page.characters,
+        hasMore: hasMore,
+        favoriteIds: favoriteIds,
+        error: null,
+      ),
     );
   }
 
@@ -116,13 +131,12 @@ class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
         emit(currentState.copyWith(error: error, pageItems: const []));
       },
       success: (isFavorite) {
-        final updatedIds = Set<int>.from(_favoriteIds);
+        final updatedIds = Set<int>.from(currentState.favoriteIds);
         if (isFavorite) {
           updatedIds.add(event.character.id);
         } else {
           updatedIds.remove(event.character.id);
         }
-        _favoriteIds = updatedIds;
         emit(
           currentState.copyWith(
             favoriteIds: updatedIds,
@@ -139,50 +153,37 @@ class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
     Emitter<CharactersState> emit,
   ) async {
     final result = await _getFavoriteIds(const NoParams());
+
     result.when(
       failure: (_) {},
       success: (ids) {
-        _favoriteIds = ids;
-
-        _syncFavoritesWithState(emit);
-      },
-    );
-  }
-
-  Future<void> _loadFavoriteIds() async {
-    final favoriteResult = await _getFavoriteIds(const NoParams());
-    favoriteResult.when(
-      success: (ids) => _favoriteIds = ids,
-      failure: (_) => _favoriteIds = {},
-    );
-  }
-
-  void _syncFavoritesWithState(Emitter<CharactersState> emit) {
-    state.maybeWhen(
-      loaded: (page, characters, pageItems, hasMore, _, error) {
-        emit(
-          CharactersState.loaded(
-            page: page,
-            characters: characters,
-            pageItems: const [],
-            hasMore: hasMore,
-            favoriteIds: _favoriteIds,
-            error: error,
-          ),
+        state.maybeWhen(
+          loaded: (page, characters, pageItems, hasMore, _, error) {
+            emit(
+              CharactersState.loaded(
+                page: page,
+                characters: characters,
+                pageItems: const [],
+                hasMore: hasMore,
+                favoriteIds: ids,
+                error: error,
+              ),
+            );
+          },
+          error: (error, page, characters, hasMore, _) {
+            emit(
+              CharactersState.error(
+                error: error,
+                page: page,
+                characters: characters,
+                hasMore: hasMore,
+                favoriteIds: ids,
+              ),
+            );
+          },
+          orElse: () {},
         );
       },
-      error: (error, page, characters, hasMore, _) {
-        emit(
-          CharactersState.error(
-            error: error,
-            page: page,
-            characters: characters,
-            hasMore: hasMore,
-            favoriteIds: _favoriteIds,
-          ),
-        );
-      },
-      orElse: () {},
     );
   }
 }
